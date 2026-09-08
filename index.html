@@ -184,7 +184,6 @@
   .testi-mini .testi-name{font-size:14.5px;}
   .testi-mini .testi-role{font-size:12px;}
   .testi-mini p{font-size:14px; color:var(--ink);}
-  .testi-sub{margin-top:44px;}
   .testi{display:grid; gap:22px; margin-top:32px;}
   .testi-card{
     background:#fff; border:1px solid var(--hairline); border-radius:10px;
@@ -196,11 +195,17 @@
     background:linear-gradient(135deg, var(--gold) 0%, var(--green) 130%);
     color:#fff; font-family:var(--serif); font-weight:700; font-size:16px;
     display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .avatar img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; border-radius:50%;
   }
   .testi-name{font-weight:700; font-size:15.5px; color:var(--ink);}
   .testi-role{font-size:13px; color:var(--ink-soft);}
   .testi-card p{font-size:15px; color:var(--ink); }
   .testi-card p + p{margin-top:12px;}
+  .dark .testi-card{border-color:#3F5A2E;}
 
   /* ---------- Rolling admission ---------- */
   .admit-card{
@@ -325,57 +330,25 @@
     <div class="testi-mini-grid">
       <div class="testi-mini">
         <div class="testi-head">
-          <div class="avatar">KS</div>
+          <div class="avatar"><span>KS</span><img src="img/katja.jpg" alt="Katja Strohmaier" onerror="this.remove()"></div>
           <div><div class="testi-name">Katja Strohmaier</div><div class="testi-role">Conversion Copywriting für Coaches &amp; Expertinnen</div></div>
         </div>
         <p>Ich bin seit 2 Monaten in der Mastermind und habe regelmäßig 2 Gespräche/Woche, hatte bereits 2 Projekte, 1 Neukunde, mehr Profilbesuche und mein Selbstvertrauen ist auch gestiegen. Ich fühle mich mehr als Unternehmerin und es fühlt sich mehr nach meinem eigenen Business an.</p>
       </div>
       <div class="testi-mini">
         <div class="testi-head">
-          <div class="avatar">HH</div>
+          <div class="avatar"><span>HH</span><img src="img/holger.jpg" alt="Holger Hoffmann" onerror="this.remove()"></div>
           <div><div class="testi-name">Holger Hoffmann</div><div class="testi-role">EU-AI-Act Governance-Trainings · Founder OteraX</div></div>
         </div>
         <p>Von allen Angeboten, die mir unterbreitet wurden, definitiv das beste. Über die Teilnahme am Kurs habe ich mehr Disziplin und erledige meine LI-Arbeit regelmäßig. Gesucht habe ich genau danach, gepaart mit Menschen, die ich fühle.</p>
       </div>
       <div class="testi-mini">
         <div class="testi-head">
-          <div class="avatar">HJ</div>
+          <div class="avatar"><span>HJ</span><img src="img/harula.jpg" alt="Harula Jung" onerror="this.remove()"></div>
           <div><div class="testi-name">Harula Jung</div><div class="testi-role">Enterprise Analytics &amp; Marketing Technology · Founder @HAJUMA®</div></div>
         </div>
         <p>Ich war kurz davor, mit LinkedIn aufzugeben. Die Module haben mir geholfen, besonders bei Positionierung, Zielgruppe und Angebot mehr Klarheit zu gewinnen. Insgesamt habe ich auf jeden Fall eine höhere Reichweite, mehr Follower und mehr Klarheit bei meinem Content.</p>
       </div>
-    </div>
-
-    <div class="testi testi-sub">
-
-      <div class="testi-card">
-        <div class="testi-head">
-          <div class="avatar">MG</div>
-          <div><div class="testi-name">Monika Gut</div><div class="testi-role">Wertebasierte Führung &amp; Zusammenarbeit für Führungskräfte</div></div>
-        </div>
-        <p>Ich habe vier Wochen intensiv mit Viktoria an meiner LinkedIn-Präsenz gearbeitet. Viktoria hat mir Klarheit, Struktur und konkrete Tools an die Hand gegeben. Ihr Feedback kam jeweils rasch, präzise und wertschätzend.</p>
-        <p>Als wir gestartet sind, hatte ich auf LinkedIn bereits Wirkung, jedoch mit hohem Aufwand: Ich brauchte lange für meine Posts und kam mit dem Beantworten von Kommentaren und Nachrichten kaum nach.</p>
-        <p>Nach vier Wochen LinkedIn-Mentoring war ich effizienter und meine KPI's haben sich ganz unbewusst mitentwickelt (im Vergleich zum 14-Tage-Schnitt davor): 1,3× mehr Impressionen, 2,5× mehr Kommentare, 3× mehr Engagement, 2,5× mehr Profilbesuche - dies bei gleichbleibend 2–3 Posts pro Woche.</p>
-        <p>Besonders wertvoll für mich: Viktoria verbindet Strategie mit Intuition. Eine Mentorin an der Seite zu haben, die fordert, stärkt und gleichzeitig Raum lässt, ist unglaublich motivierend.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head">
-          <div class="avatar">HK</div>
-          <div><div class="testi-name">Helena Koch</div><div class="testi-role">Energiearbeit für Solopreneur:innen</div></div>
-        </div>
-        <p>Das Coaching mit Viktoria hat mir sehr viel Spaß gemacht. Mir war wichtig, eine Begleitung zu finden, bei der die Energie stimmt - und genau das habe ich erlebt. Ich fühle mich nun sicher im Umgang mit LinkedIn und weiß, worauf es beim Aufbau einer Personal Brand wirklich ankommt.</p>
-        <p>Viktoria hat nicht nur wertvolle Einblicke aus ihrer Arbeit als Copywriterin geteilt, sondern auch praxisnahe Tipps, hilfreiches Material und Anregungen, wie ich Tools wie Notion oder KI gezielt nutzen kann, um meine Arbeit zu vereinfachen und Energie für das Wesentliche zu bewahren.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head">
-          <div class="avatar">DB</div>
-          <div><div class="testi-name">Dennis Bremer</div><div class="testi-role">Private Krankenversicherung &amp; Gewerbeabsicherung für Gründer</div></div>
-        </div>
-        <p>Vivi ist einer der ersten Menschen, die ich hier bei LinkedIn kennenlernen durfte. Durch zahlreiche Gespräche, Austausch und ihre Hilfe habe ich es geschafft, meine Followeranzahl zu verdreifachen, mehr Anfragen zu bekommen und im Schnitt 50–80 Kommentare unter meinen Beiträgen zu haben. Ich kann die Zusammenarbeit mit Vivi nur empfehlen. Ohne sie wäre ich heute nicht hier.</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -458,6 +431,45 @@
         <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M11 20V4M18 20v-7"/></svg></div>
         <div><h3>DM-Aktivitäts-Tracker (Google Sheets)</h3><p>Täglich tracken, wie viele DMs du sendest, wie viele Gespräche entstehen - schwarz auf weiß ob deine Schlagzahl stimmt.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Noch mehr Stimmen</span>
+    <div class="head-block"><h2>Ergebnisse aus der Zusammenarbeit</h2></div>
+
+    <div class="testi">
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar"><span>MG</span><img src="img/monika.jpg" alt="Monika Gut" onerror="this.remove()"></div>
+          <div><div class="testi-name">Monika Gut</div><div class="testi-role">Wertebasierte Führung &amp; Zusammenarbeit für Führungskräfte</div></div>
+        </div>
+        <p>Ich habe vier Wochen intensiv mit Viktoria an meiner LinkedIn-Präsenz gearbeitet. Viktoria hat mir Klarheit, Struktur und konkrete Tools an die Hand gegeben. Ihr Feedback kam jeweils rasch, präzise und wertschätzend.</p>
+        <p>Als wir gestartet sind, hatte ich auf LinkedIn bereits Wirkung, jedoch mit hohem Aufwand: Ich brauchte lange für meine Posts und kam mit dem Beantworten von Kommentaren und Nachrichten kaum nach.</p>
+        <p>Nach vier Wochen LinkedIn-Mentoring war ich effizienter und meine KPI's haben sich ganz unbewusst mitentwickelt (im Vergleich zum 14-Tage-Schnitt davor): 1,3× mehr Impressionen, 2,5× mehr Kommentare, 3× mehr Engagement, 2,5× mehr Profilbesuche - dies bei gleichbleibend 2–3 Posts pro Woche.</p>
+        <p>Besonders wertvoll für mich: Viktoria verbindet Strategie mit Intuition. Eine Mentorin an der Seite zu haben, die fordert, stärkt und gleichzeitig Raum lässt, ist unglaublich motivierend.</p>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar"><span>HK</span><img src="img/helena.jpg" alt="Helena Koch" onerror="this.remove()"></div>
+          <div><div class="testi-name">Helena Koch</div><div class="testi-role">Energiearbeit für Solopreneur:innen</div></div>
+        </div>
+        <p>Das Coaching mit Viktoria hat mir sehr viel Spaß gemacht. Mir war wichtig, eine Begleitung zu finden, bei der die Energie stimmt - und genau das habe ich erlebt. Ich fühle mich nun sicher im Umgang mit LinkedIn und weiß, worauf es beim Aufbau einer Personal Brand wirklich ankommt.</p>
+        <p>Viktoria hat nicht nur wertvolle Einblicke aus ihrer Arbeit als Copywriterin geteilt, sondern auch praxisnahe Tipps, hilfreiches Material und Anregungen, wie ich Tools wie Notion oder KI gezielt nutzen kann, um meine Arbeit zu vereinfachen und Energie für das Wesentliche zu bewahren.</p>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar"><span>DB</span><img src="img/dennis.jpg" alt="Dennis Bremer" onerror="this.remove()"></div>
+          <div><div class="testi-name">Dennis Bremer</div><div class="testi-role">Private Krankenversicherung &amp; Gewerbeabsicherung für Gründer</div></div>
+        </div>
+        <p>Vivi ist einer der ersten Menschen, die ich hier bei LinkedIn kennenlernen durfte. Durch zahlreiche Gespräche, Austausch und ihre Hilfe habe ich es geschafft, meine Followeranzahl zu verdreifachen, mehr Anfragen zu bekommen und im Schnitt 50–80 Kommentare unter meinen Beiträgen zu haben. Ich kann die Zusammenarbeit mit Vivi nur empfehlen. Ohne sie wäre ich heute nicht hier.</p>
+      </div>
+
     </div>
   </div>
 </section>
