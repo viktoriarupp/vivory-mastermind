@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vivory Mastermind Warteliste</title>
-<meta name="description" content="Wöchentliche Inbound-Anfragen statt Kaltakquise. Kundengewinnung von A–Z in 12 Wochen – Personal Branding, System & Live-Begleitung. Sichere dir deinen Platz auf der Warteliste.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vivory Mastermind – Warteliste">
-<meta property="og:description" content="Wöchentliche Inbound-Anfragen statt Kaltakquise. Kundengewinnung von A–Z in 12 Wochen. Sichere dir deinen Platz.">
-<meta property="og:url" content="https://viktoriarupp.github.io/vivory-mastermind/">
-<meta property="og:image" content="https://viktoriarupp.github.io/vivory-mastermind/og.png">
-<meta name="twitter:card" content="summary_large_image">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -135,11 +123,6 @@
   }
   .qual-list svg{flex:none; width:18px; height:18px; margin-top:3px; color:var(--gold);}
 
-  /* ---------- Check list ---------- */
-  .check-list{list-style:none; margin:28px 0 0; padding:0; display:grid; gap:14px;}
-  .check-list li{display:flex; gap:12px; align-items:flex-start; font-size:17px; color:var(--ink); font-weight:500;}
-  .check-list svg{flex:none; width:20px; height:20px; margin-top:2px; color:var(--gold);}
-
   /* ---------- Section heads ---------- */
   .head-block{margin-bottom:36px;}
   .head-block h2{font-size:clamp(26px,4vw,34px); color:var(--green); margin-top:10px;}
@@ -201,6 +184,7 @@
   .testi-mini .testi-name{font-size:14.5px;}
   .testi-mini .testi-role{font-size:12px;}
   .testi-mini p{font-size:14px; color:var(--ink);}
+  .testi-sub{margin-top:44px;}
   .testi{display:grid; gap:22px; margin-top:32px;}
   .testi-card{
     background:#fff; border:1px solid var(--hairline); border-radius:10px;
@@ -212,18 +196,11 @@
     background:linear-gradient(135deg, var(--gold) 0%, var(--green) 130%);
     color:#fff; font-family:var(--serif); font-weight:700; font-size:16px;
     display:flex; align-items:center; justify-content:center;
-    position:relative; overflow:hidden;
-  }
-  .avatar img{
-    position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; border-radius:50%;
-    transform:scale(1.3);
   }
   .testi-name{font-weight:700; font-size:15.5px; color:var(--ink);}
   .testi-role{font-size:13px; color:var(--ink-soft);}
   .testi-card p{font-size:15px; color:var(--ink); }
   .testi-card p + p{margin-top:12px;}
-  .dark .testi-card{border-color:#3F5A2E;}
 
   /* ---------- Rolling admission ---------- */
   .admit-card{
@@ -272,7 +249,14 @@
   .fine{font-size:12.5px; color:#8FA07E; margin-top:4px;}
 
   .kit-embed{
-    margin-top:30px;
+    margin-top:30px; min-height:64px;
+    border:1px dashed #3F5A2E; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; text-align:center;
+  }
+  .kit-embed::before{
+    content:"Kit-Formular erscheint hier live auf deiner eigenen Domain (in dieser Vorschau blockiert)";
+    font-size:13px; color:#8FA07E;
   }
 
   .success{
@@ -304,8 +288,6 @@
   .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1; transform:none;}
 </style>
-</head>
-<body>
 
 <div class="topbar">
   <div class="topbar-inner">
@@ -317,12 +299,12 @@
 <section class="dark hero">
   <div class="wrap">
     <span class="eyebrow">Warteliste · Vivory Mastermind</span>
-    <h1>Wöchentliche Inbound-Anfragen<br><em>statt Kaltakquise und Pitchen.</em></h1>
-    <p class="hero-sub">Ein System aus Content, Positionierung und Sales, das dir planbar Anfragen von Wunschkund:innen bringt - statt dass du jedem Post hinterherjagst.</p>
+    <h1>So baust du dir in 12 Wochen einen planbaren Kundengewinnungsprozess über LinkedIn auf -<br><em>ohne täglich Kaltakquise zu machen.</em></h1>
+    <p class="hero-sub">Positionierung, Content und Sales greifen endlich ineinander, damit aus deiner Sichtbarkeit regelmäßig konkrete Anfragen werden.</p>
     <div class="hero-badges">
       <span class="badge">9 Module</span>
       <span class="badge">5 Live-Call-Formate</span>
-      <span class="badge">12 Wochen</span>
+      <span class="badge">3 Monate</span>
       <span class="badge">Private Community auf Skool</span>
     </div>
     <a class="cta-btn" href="#warteliste">
@@ -336,23 +318,9 @@
 <section class="band tight">
   <div class="wrap reveal">
     <div class="quote-card">
-      <p>Du postest - aber die Anfragen bleiben aus. Das Problem ist selten der Fleiß. Es fehlt das System dahinter.</p>
+      <p>Das Problem ist selten der Fleiß. Es fehlt das System dahinter.</p>
       <p>In der <strong>Vivory Mastermind</strong> bauen wir genau das auf: wöchentliche Inbound-Anfragen von Wunschkund:innen, Content der kaufbereit macht - und ein System, das arbeitet, auch wenn du es nicht tust.</p>
     </div>
-  </div>
-</section>
-
-<section class="band tight">
-  <div class="wrap reveal">
-    <span class="eyebrow">Das steckt drin</span>
-    <div class="head-block"><h2>Übersetze Deine Persönlichkeit in Umsatz</h2></div>
-    <ul class="check-list">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Kundengewinnung von A–Z in 12 Wochen</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Personal Branding auf LinkedIn</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> CRM, Prozesse, AI-Hilfsmittel &amp; Trackingsysteme</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> 24/7 Support via Skool &amp; Mail</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Tägliches 1:1 Feedback &amp; Live Calls</li>
-    </ul>
   </div>
 </section>
 
@@ -364,25 +332,57 @@
     <div class="testi-mini-grid">
       <div class="testi-mini">
         <div class="testi-head">
-          <div class="avatar"><span>KS</span><img src="katja.png" alt="Katja Strohmaier" onerror="this.remove()"></div>
+          <div class="avatar">KS</div>
           <div><div class="testi-name">Katja Strohmaier</div><div class="testi-role">Conversion Copywriting für Coaches &amp; Expertinnen</div></div>
         </div>
-        <p>Ich bin seit 2 Monaten in der Mastermind und habe regelmäßig 2 Gespräche/Woche, hatte bereits 2 Projekte, 1 Neukunde, mehr Profilbesuche und mein Selbstvertrauen ist auch gestiegen. Ich fühle mich mehr als Unternehmerin und es fühlt sich mehr nach meinem eigenen Business an.</p>
+        <p>Ich bin seit 2 Monaten in der Mastermind und habe regelmäßig 2 Gespräche/Woche, hatte bereits 3 Projekte (ohne den 1 Neukunden), mehr Profilbesuche und mein Selbstvertrauen ist auch gestiegen. Ich fühle mich mehr als Unternehmerin und es fühlt sich mehr nach meinem eigenen Business an.</p>
       </div>
       <div class="testi-mini">
         <div class="testi-head">
-          <div class="avatar"><span>HH</span><img src="holger.png" alt="Holger Hoffmann" onerror="this.remove()"></div>
+          <div class="avatar">HH</div>
           <div><div class="testi-name">Holger Hoffmann</div><div class="testi-role">EU-AI-Act Governance-Trainings · Founder OteraX</div></div>
         </div>
         <p>Von allen Angeboten, die mir unterbreitet wurden, definitiv das beste. Über die Teilnahme am Kurs habe ich mehr Disziplin und erledige meine LI-Arbeit regelmäßig. Gesucht habe ich genau danach, gepaart mit Menschen, die ich fühle.</p>
       </div>
       <div class="testi-mini">
         <div class="testi-head">
-          <div class="avatar"><span>HJ</span><img src="harula.png" alt="Harula Jung" onerror="this.remove()"></div>
+          <div class="avatar">HJ</div>
           <div><div class="testi-name">Harula Jung</div><div class="testi-role">Enterprise Analytics &amp; Marketing Technology · Founder @HAJUMA®</div></div>
         </div>
         <p>Ich war kurz davor, mit LinkedIn aufzugeben. Die Module haben mir geholfen, besonders bei Positionierung, Zielgruppe und Angebot mehr Klarheit zu gewinnen. Insgesamt habe ich auf jeden Fall eine höhere Reichweite, mehr Follower und mehr Klarheit bei meinem Content.</p>
       </div>
+    </div>
+
+    <div class="testi testi-sub">
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar">MG</div>
+          <div><div class="testi-name">Monika Gut</div><div class="testi-role">Wertebasierte Führung &amp; Zusammenarbeit für Führungskräfte</div></div>
+        </div>
+        <p>Ich habe vier Wochen intensiv mit Viktoria an meiner LinkedIn-Präsenz gearbeitet. Viktoria hat mir Klarheit, Struktur und konkrete Tools an die Hand gegeben. Ihr Feedback kam jeweils rasch, präzise und wertschätzend.</p>
+        <p>Als wir gestartet sind, hatte ich auf LinkedIn bereits Wirkung, jedoch mit hohem Aufwand: Ich brauchte lange für meine Posts und kam mit dem Beantworten von Kommentaren und Nachrichten kaum nach.</p>
+        <p>Nach vier Wochen LinkedIn-Mentoring war ich effizienter und meine KPI's haben sich ganz unbewusst mitentwickelt (im Vergleich zum 14-Tage-Schnitt davor): 1,3× mehr Impressionen, 2,5× mehr Kommentare, 3× mehr Engagement, 2,5× mehr Profilbesuche - dies bei gleichbleibend 2–3 Posts pro Woche.</p>
+        <p>Besonders wertvoll für mich: Viktoria verbindet Strategie mit Intuition. Eine Mentorin an der Seite zu haben, die fordert, stärkt und gleichzeitig Raum lässt, ist unglaublich motivierend.</p>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar">HK</div>
+          <div><div class="testi-name">Helena Koch</div><div class="testi-role">Energiearbeit für Solopreneur:innen</div></div>
+        </div>
+        <p>Das Coaching mit Viktoria hat mir sehr viel Spaß gemacht. Mir war wichtig, eine Begleitung zu finden, bei der die Energie stimmt - und genau das habe ich erlebt. Ich fühle mich nun sicher im Umgang mit LinkedIn und weiß, worauf es beim Aufbau einer Personal Brand wirklich ankommt.</p>
+        <p>Viktoria hat nicht nur wertvolle Einblicke aus ihrer Arbeit als Copywriterin geteilt, sondern auch praxisnahe Tipps, hilfreiches Material und Anregungen, wie ich Tools wie Notion oder KI gezielt nutzen kann, um meine Arbeit zu vereinfachen und Energie für das Wesentliche zu bewahren.</p>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar">DB</div>
+          <div><div class="testi-name">Dennis Bremer</div><div class="testi-role">Private Krankenversicherung &amp; Gewerbeabsicherung für Gründer</div></div>
+        </div>
+        <p>Vivi ist einer der ersten Menschen, die ich hier bei LinkedIn kennenlernen durfte. Durch zahlreiche Gespräche, Austausch und ihre Hilfe habe ich es geschafft, meine Followeranzahl zu verdreifachen, mehr Anfragen zu bekommen und im Schnitt 50–80 Kommentare unter meinen Beiträgen zu haben. Ich kann die Zusammenarbeit mit Vivi nur empfehlen. Ohne sie wäre ich heute nicht hier.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -469,45 +469,6 @@
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap reveal">
-    <span class="eyebrow">Noch mehr Stimmen</span>
-    <div class="head-block"><h2>Ergebnisse aus der Zusammenarbeit</h2></div>
-
-    <div class="testi">
-
-      <div class="testi-card">
-        <div class="testi-head">
-          <div class="avatar"><span>MG</span><img src="monika.png" alt="Monika Gut" onerror="this.remove()"></div>
-          <div><div class="testi-name">Monika Gut</div><div class="testi-role">Wertebasierte Führung &amp; Zusammenarbeit für Führungskräfte</div></div>
-        </div>
-        <p>Ich habe vier Wochen intensiv mit Viktoria an meiner LinkedIn-Präsenz gearbeitet. Viktoria hat mir Klarheit, Struktur und konkrete Tools an die Hand gegeben. Ihr Feedback kam jeweils rasch, präzise und wertschätzend.</p>
-        <p>Als wir gestartet sind, hatte ich auf LinkedIn bereits Wirkung, jedoch mit hohem Aufwand: Ich brauchte lange für meine Posts und kam mit dem Beantworten von Kommentaren und Nachrichten kaum nach.</p>
-        <p>Nach vier Wochen LinkedIn-Mentoring war ich effizienter und meine KPI's haben sich ganz unbewusst mitentwickelt (im Vergleich zum 14-Tage-Schnitt davor): 1,3× mehr Impressionen, 2,5× mehr Kommentare, 3× mehr Engagement, 2,5× mehr Profilbesuche - dies bei gleichbleibend 2–3 Posts pro Woche.</p>
-        <p>Besonders wertvoll für mich: Viktoria verbindet Strategie mit Intuition. Eine Mentorin an der Seite zu haben, die fordert, stärkt und gleichzeitig Raum lässt, ist unglaublich motivierend.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head">
-          <div class="avatar"><span>HK</span><img src="helena.png" alt="Helena Koch" onerror="this.remove()"></div>
-          <div><div class="testi-name">Helena Koch</div><div class="testi-role">Energiearbeit für Solopreneur:innen</div></div>
-        </div>
-        <p>Das Coaching mit Viktoria hat mir sehr viel Spaß gemacht. Mir war wichtig, eine Begleitung zu finden, bei der die Energie stimmt - und genau das habe ich erlebt. Ich fühle mich nun sicher im Umgang mit LinkedIn und weiß, worauf es beim Aufbau einer Personal Brand wirklich ankommt.</p>
-        <p>Viktoria hat nicht nur wertvolle Einblicke aus ihrer Arbeit als Copywriterin geteilt, sondern auch praxisnahe Tipps, hilfreiches Material und Anregungen, wie ich Tools wie Notion oder KI gezielt nutzen kann, um meine Arbeit zu vereinfachen und Energie für das Wesentliche zu bewahren.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head">
-          <div class="avatar"><span>DB</span><img src="dennis.png" alt="Dennis Bremer" onerror="this.remove()"></div>
-          <div><div class="testi-name">Dennis Bremer</div><div class="testi-role">Private Krankenversicherung &amp; Gewerbeabsicherung für Gründer</div></div>
-        </div>
-        <p>Vivi ist einer der ersten Menschen, die ich hier bei LinkedIn kennenlernen durfte. Durch zahlreiche Gespräche, Austausch und ihre Hilfe habe ich es geschafft, meine Followeranzahl zu verdreifachen, mehr Anfragen zu bekommen und im Schnitt 50–80 Kommentare unter meinen Beiträgen zu haben. Ich kann die Zusammenarbeit mit Vivi nur empfehlen. Ohne sie wäre ich heute nicht hier.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <section class="dark band tight">
   <div class="wrap reveal">
     <div class="admit-card" style="background:#173209;">
@@ -533,6 +494,18 @@
       <div class="kit-embed">
         <script async data-uid="2448e8ea2c" src="https://vivorystudios-llc.kit.com/2448e8ea2c/index.js"></script>
       </div>
+      <!-- Hinweis: Das ist dein Kit-Formular-Embed - Kit rendert hier sein
+           eigenes Formular-Design (Felder, Button, Erfolgsmeldung kommen
+           direkt aus deinem Kit-Formularbuilder, nicht aus dieser Datei).
+           Die "Was ist dein Ziel auf LinkedIn?"-Frage aus der alten Forms-
+           Warteliste ist hier NICHT mehr enthalten - falls du sie behalten
+           willst, leg in Kit ein Custom Field an und füg die Frage im
+           Kit-Formularbuilder selbst hinzu.
+           Auf der claude.ai-Vorschau greift die Content-Security-Policy und
+           blockt dieses fremde Skript (vivorystudios-llc.kit.com ist nicht
+           auf der erlaubten CDN-Liste) - hier erscheint also nichts, das ist
+           normal. Sobald die Seite auf deiner eigenen Domain läuft, lädt
+           das Kit-Formular ganz normal. -->
     </div>
   </div>
 </section>
@@ -543,6 +516,12 @@
     <p>Vivory Studios · Warteliste für die nächste Runde</p>
   </div>
 </footer>
+
+<!-- ANALYTICS-PLATZHALTER: Hier das <script>-Snippet von Cloudflare Web
+     Analytics (oder GoatCounter) einfügen, sobald die Seite auf der
+     eigenen Domain läuft. Auf der claude.ai-Vorschau greift die
+     Content-Security-Policy und blockt fremde Analytics-Skripte -
+     dort zeigt es also nichts an, das ist normal. -->
 
 <script>
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -557,6 +536,3 @@
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 </script>
-
-</body>
-</html>
