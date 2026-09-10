@@ -1,1189 +1,500 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vivory Mastermind Warteliste</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
-
-    :root {
-      --green: #1E3D0F;
-      --green-2: #16300B;
-      --gold: #C4973A;
-      --gold-soft: #E4C989;
-      --cream: #F8F5EF;
-      --cream-2: #EFE6D3;
-
-      --ink: #241F17;
-      --ink-soft: #5B5548;
-      --hairline: #DCD2B8;
-      --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: var(--serif);
-      font-weight: 700;
-      text-wrap: balance;
-      margin: 0;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    img {
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .wrap {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    .band {
-      padding: 88px 0;
-    }
-
-    .band.tight {
-      padding: 64px 0;
-    }
-
-    .dark {
-      background: var(--green);
-      color: var(--cream);
-    }
-
-    .dark .ink-soft {
-      color: #C9D6BE;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-family: var(--sans);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .dark .eyebrow {
-      color: var(--gold-soft);
-    }
-
-    /* ---------- Top bar ---------- */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(248, 245, 239, .92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .topbar-inner {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 14px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 19px;
-      color: var(--green);
-      letter-spacing: .01em;
-    }
-
-    .brand span {
-      color: var(--gold);
-    }
-
-    .topbar-cta {
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--cream);
-      background: var(--green);
-      padding: 10px 18px;
-      border-radius: 100px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .topbar-cta:hover {
-      background: var(--green-2);
-    }
-
-    /* ---------- Hero ---------- */
-    .hero {
-      padding: 76px 0 64px;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 32px;
-    }
-
-    .badge {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gold-soft);
-      border: 1px solid #3F5A2E;
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-family: var(--sans);
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 54px);
-      line-height: 1.08;
-      margin-top: 14px;
-      color: var(--cream);
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold-soft);
-    }
-
-    .hero-sub {
-      font-size: 19px;
-      color: #D9E2CD;
-      max-width: 560px;
-      margin-top: 20px;
-    }
-
-    .hero-note {
-      margin-top: 28px;
-      font-size: 14px;
-      color: var(--gold-soft);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex: none;
-      box-shadow: 0 0 0 3px rgba(196, 151, 58, .25);
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--gold);
-      color: var(--green-2);
-      font-family: var(--sans);
-      font-weight: 700;
-      font-size: 16px;
-      padding: 16px 30px;
-      border-radius: 100px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      margin-top: 32px;
-      transition: transform .15s ease, background .15s ease;
-    }
-
-    .cta-btn:hover {
-      background: var(--gold-soft);
-      transform: translateY(-1px);
-    }
-
-    .cta-btn svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* ---------- Quote / problem-solution ---------- */
-    .quote-card {
-      background: #fff;
-      border-left: 4px solid var(--gold);
-      padding: 34px 36px;
-      border-radius: 2px;
-      box-shadow: 0 1px 2px rgba(36, 31, 23, .04);
-    }
-
-    .quote-card p {
-      font-size: 17px;
-      color: var(--ink);
-    }
-
-    .quote-card p+p {
-      margin-top: 16px;
-    }
-
-    .quote-card strong {
-      color: var(--green);
-    }
-
-    /* ---------- Für wen ---------- */
-    .qual-list {
-      list-style: none;
-      margin: 28px 0 0;
-      padding: 0;
-      display: grid;
-      gap: 16px;
-    }
-
-    .qual-list li {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      font-size: 16.5px;
-      color: #E7EEDE;
-    }
-
-    .qual-list svg {
-      flex: none;
-      width: 18px;
-      height: 18px;
-      margin-top: 3px;
-      color: var(--gold);
-    }
-
-    /* ---------- Section heads ---------- */
-    .head-block {
-      margin-bottom: 36px;
-    }
-
-    .head-block h2 {
-      font-size: clamp(26px, 4vw, 34px);
-      color: var(--green);
-      margin-top: 10px;
-    }
-
-    .dark .head-block h2 {
-      color: var(--cream);
-    }
-
-    /* ---------- Module list ---------- */
-    .module-row {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 22px 0;
-      border-top: 1px solid var(--hairline);
-    }
-
-    .module-row:last-child {
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .module-num {
-      flex: none;
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      background: var(--green);
-      color: var(--gold-soft);
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .module-row h3 {
-      font-size: 17px;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .module-row p {
-      font-size: 15px;
-      color: var(--ink-soft);
-    }
-
-    .tag-new {
-      display: inline-block;
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .02em;
-      color: var(--green);
-      background: var(--cream-2);
-      border: 1px solid var(--gold);
-      padding: 4px 10px;
-      border-radius: 100px;
-      margin-left: 10px;
-      vertical-align: middle;
-    }
-
-    /* ---------- Call formats ---------- */
-    .call-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .call-card {
-      background: #fff;
-      border-top: 3px solid var(--gold);
-      padding: 22px 24px;
-      border-radius: 6px;
-    }
-
-    .call-card h3 {
-      font-size: 16.5px;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
-
-    .call-card p {
-      font-size: 14.5px;
-      color: var(--ink-soft);
-    }
-
-    /* ---------- Includes ---------- */
-    .inc-grid {
-      display: grid;
-      gap: 2px;
-      margin-top: 28px;
-      background: var(--hairline);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .inc-item {
-      background: var(--cream);
-      padding: 22px 24px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .inc-icon {
-      flex: none;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--cream-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--green);
-    }
-
-    .inc-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .inc-item h3 {
-      font-size: 16px;
-      color: var(--ink);
-      margin-bottom: 3px;
-    }
-
-    .inc-item p {
-      font-size: 14px;
-      color: var(--ink-soft);
-    }
-
-    /* ---------- Testimonials ---------- */
-    .testi-mini-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .testi-mini {
-      background: #fff;
-      border: 1px solid var(--hairline);
-      border-radius: 10px;
-      padding: 22px 22px;
-    }
-
-    .testi-mini .testi-head {
-      margin-bottom: 12px;
-    }
-
-    .testi-mini .avatar {
-      width: 38px;
-      height: 38px;
-      font-size: 13px;
-    }
-
-    .testi-mini .testi-name {
-      font-size: 14.5px;
-    }
-
-    .testi-mini .testi-role {
-      font-size: 12px;
-    }
-
-    .testi-mini p {
-      font-size: 14px;
-      color: var(--ink);
-    }
-
-    .testi-sub {
-      margin-top: 44px;
-    }
-
-    .testi {
-      display: grid;
-      gap: 22px;
-      margin-top: 32px;
-    }
-
-    .testi-card {
-      background: #fff;
-      border: 1px solid var(--hairline);
-      border-radius: 10px;
-      padding: 28px 30px;
-    }
-
-    .testi-head {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .avatar {
-      flex: none;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--green) 130%);
-      color: #fff;
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .testi-name {
-      font-weight: 700;
-      font-size: 15.5px;
-      color: var(--ink);
-    }
-
-    .testi-role {
-      font-size: 13px;
-      color: var(--ink-soft);
-    }
-
-    .testi-card p {
-      font-size: 15px;
-      color: var(--ink);
-    }
-
-    .testi-card p+p {
-      margin-top: 12px;
-    }
-
-    /* ---------- Rolling admission ---------- */
-    .admit-card {
-      background: var(--cream-2);
-      border-radius: 10px;
-      padding: 36px 38px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .admit-dates {
-      display: flex;
-      gap: 14px;
-    }
-
-    .admit-date {
-      background: var(--green);
-      color: var(--cream);
-      border-radius: 8px;
-      padding: 10px 16px;
-      text-align: center;
-      min-width: 76px;
-    }
-
-    .admit-date .d {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold-soft);
-      line-height: 1;
-    }
-
-    .admit-date .m {
-      font-size: 11px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
-    .admit-text h3 {
-      font-family: var(--sans);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 6px;
-    }
-
-    .admit-text p {
-      font-size: 14.5px;
-      color: var(--ink-soft);
-      max-width: 420px;
-    }
-
-    /* ---------- Form ---------- */
-    .form-card {
-      background: var(--green);
-      border-radius: 14px;
-      padding: 44px 40px;
-      color: var(--cream);
-    }
-
-    .form-card h2 {
-      color: var(--cream);
-      font-size: clamp(24px, 4vw, 30px);
-    }
-
-    .form-card>p {
-      color: #D9E2CD;
-      margin-top: 12px;
-      font-size: 15.5px;
-      max-width: 480px;
-    }
-
-    form {
-      margin-top: 30px;
-      display: grid;
-      gap: 20px;
-    }
-
-    label {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: .03em;
-      text-transform: uppercase;
-      color: var(--gold-soft);
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    input[type="text"],
-    input[type="email"] {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 8px;
-      border: 1px solid #3F5A2E;
-      background: #173209;
-      color: var(--cream);
-      font-family: var(--sans);
-      font-size: 15px;
-    }
-
-    input::placeholder {
-      color: #8FA07E;
-    }
-
-    input:focus,
-    .radio-row input:focus+span {
-      outline: 2px solid var(--gold-soft);
-      outline-offset: 2px;
-    }
-
-    .radio-grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .radio-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-      color: #E7EEDE;
-      cursor: pointer;
-      background: #173209;
-      border: 1px solid #3F5A2E;
-      border-radius: 8px;
-      padding: 12px 14px;
-    }
-
-    .radio-row input {
-      accent-color: var(--gold);
-      width: 16px;
-      height: 16px;
-      flex: none;
-    }
-
-    .submit-btn {
-      background: var(--gold);
-      color: var(--green-2);
-      border: none;
-      border-radius: 100px;
-      font-family: var(--sans);
-      font-weight: 700;
-      font-size: 16px;
-      padding: 16px 30px;
-      cursor: pointer;
-      justify-self: start;
-      margin-top: 6px;
-      transition: background .15s ease;
-    }
-
-    .submit-btn:hover {
-      background: var(--gold-soft);
-    }
-
-    .fine {
-      font-size: 12.5px;
-      color: #8FA07E;
-      margin-top: 4px;
-    }
-
-    .kit-embed {
-      margin-top: 30px;
-    }
-
-    .success {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .success.show {
-      display: block;
-    }
-
-    .success svg {
-      width: 44px;
-      height: 44px;
-      color: var(--gold-soft);
-      margin-bottom: 16px;
-    }
-
-    .success h3 {
-      color: var(--cream);
-      font-family: var(--serif);
-      font-size: 22px;
-    }
-
-    .success p {
-      color: #D9E2CD;
-      margin-top: 10px;
-      font-size: 15px;
-    }
-
-    /* ---------- Footer ---------- */
-    footer {
-      padding: 48px 0;
-      text-align: center;
-    }
-
-    footer .brand {
-      justify-content: center;
-      display: inline-flex;
-    }
-
-    footer p {
-      font-size: 13px;
-      color: var(--ink-soft);
-      margin-top: 10px;
-    }
-
-    @media (max-width:640px) {
-      .call-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .testi-mini-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .band {
-        padding: 64px 0;
-      }
-
-      .admit-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .form-card {
-        padding: 32px 22px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-
-    .reveal.in {
-      opacity: 1;
-      transform: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vivory Mastermind Warteliste</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --green:#1E3D0F;
+    --green-2:#16300B;
+    --gold:#C4973A;
+    --gold-soft:#E4C989;
+    --cream:#F8F5EF;
+    --cream-2:#EFE6D3;
+    --ink:#241F17;
+    --ink-soft:#5B5548;
+    --hairline:#DCD2B8;
+    --serif:'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--serif); font-weight:700; text-wrap:balance; margin:0;}
+  p{margin:0;}
+  img{max-width:100%;}
+  a{color:inherit;}
+
+  .wrap{max-width:840px; margin:0 auto; padding:0 28px;}
+  .band{padding:88px 0;}
+  .band.tight{padding:64px 0;}
+  .dark{background:var(--green); color:var(--cream);}
+  .dark .ink-soft{color:#C9D6BE;}
+
+  .eyebrow{
+    display:inline-block;
+    font-family:var(--sans);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .dark .eyebrow{color:var(--gold-soft);}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:rgba(248,245,239,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .topbar-inner{
+    max-width:840px; margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{
+    font-family:var(--serif); font-weight:700; font-size:19px; color:var(--green);
+    letter-spacing:.01em;
+  }
+  .brand span{color:var(--gold);}
+  .topbar-cta{
+    font-family:var(--sans); font-size:13px; font-weight:700;
+    color:var(--cream); background:var(--green);
+    padding:10px 18px; border-radius:100px; text-decoration:none;
+    white-space:nowrap;
+  }
+  .topbar-cta:hover{background:var(--green-2);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:76px 0 64px;}
+  .hero-badges{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:32px;
+  }
+  .badge{
+    font-size:13px; font-weight:600; color:var(--gold-soft);
+    border:1px solid #3F5A2E; padding:8px 16px; border-radius:100px;
+    font-family:var(--sans);
+  }
+  .hero h1{font-size:clamp(36px,6vw,54px); line-height:1.08; margin-top:14px; color:var(--cream);}
+  .hero h1 em{font-style:normal; color:var(--gold-soft);}
+  .hero-sub{
+    font-size:19px; color:#D9E2CD; max-width:560px; margin-top:20px;
+  }
+  .hero-note{
+    margin-top:28px; font-size:14px; color:var(--gold-soft);
+    display:flex; align-items:center; gap:8px;
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); flex:none;
+       box-shadow:0 0 0 3px rgba(196,151,58,.25);}
+
+  .cta-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--gold); color:var(--green-2);
+    font-family:var(--sans); font-weight:700; font-size:16px;
+    padding:16px 30px; border-radius:100px; text-decoration:none;
+    border:none; cursor:pointer; margin-top:32px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .cta-btn:hover{background:var(--gold-soft); transform:translateY(-1px);}
+  .cta-btn svg{width:16px; height:16px;}
+
+  /* ---------- Quote / problem-solution ---------- */
+  .quote-card{
+    background:#fff; border-left:4px solid var(--gold);
+    padding:34px 36px; border-radius:2px;
+    box-shadow:0 1px 2px rgba(36,31,23,.04);
+  }
+  .quote-card p{font-size:17px; color:var(--ink);}
+  .quote-card p + p{margin-top:16px;}
+  .quote-card strong{color:var(--green);}
+
+  /* ---------- Für wen ---------- */
+  .qual-list{list-style:none; margin:28px 0 0; padding:0; display:grid; gap:16px;}
+  .qual-list li{
+    display:flex; gap:14px; align-items:flex-start;
+    font-size:16.5px; color:#E7EEDE;
+  }
+  .qual-list svg{flex:none; width:18px; height:18px; margin-top:3px; color:var(--gold);}
+
+  /* ---------- Section heads ---------- */
+  .head-block{margin-bottom:36px;}
+  .head-block h2{font-size:clamp(26px,4vw,34px); color:var(--green); margin-top:10px;}
+  .dark .head-block h2{color:var(--cream);}
+
+  /* ---------- Module list ---------- */
+  .module-row{
+    display:flex; gap:20px; align-items:flex-start;
+    padding:22px 0; border-top:1px solid var(--hairline);
+  }
+  .module-row:last-child{border-bottom:1px solid var(--hairline);}
+  .module-num{
+    flex:none; width:38px; height:38px; border-radius:8px;
+    background:var(--green); color:var(--gold-soft);
+    font-family:var(--serif); font-weight:700; font-size:16px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .module-row h3{font-size:17px; color:var(--ink); margin-bottom:4px;}
+  .module-row p{font-size:15px; color:var(--ink-soft);}
+  .tag-new{
+    display:inline-block; font-family:var(--sans); font-size:11px; font-weight:700;
+    letter-spacing:.02em; color:var(--green); background:var(--cream-2);
+    border:1px solid var(--gold); padding:4px 10px; border-radius:100px;
+    margin-left:10px; vertical-align:middle;
+  }
+
+  /* ---------- Call formats ---------- */
+  .call-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:28px;}
+  .call-card{
+    background:#fff; border-top:3px solid var(--gold);
+    padding:22px 24px; border-radius:6px;
+  }
+  .call-card h3{font-size:16.5px; color:var(--green); margin-bottom:8px;}
+  .call-card p{font-size:14.5px; color:var(--ink-soft);}
+
+  /* ---------- Includes ---------- */
+  .inc-grid{display:grid; gap:2px; margin-top:28px; background:var(--hairline); border-radius:8px; overflow:hidden;}
+  .inc-item{
+    background:var(--cream); padding:22px 24px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .inc-icon{
+    flex:none; width:38px; height:38px; border-radius:50%;
+    background:var(--cream-2); display:flex; align-items:center; justify-content:center;
+    color:var(--green);
+  }
+  .inc-icon svg{width:18px; height:18px;}
+  .inc-item h3{font-size:16px; color:var(--ink); margin-bottom:3px;}
+  .inc-item p{font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- Testimonials ---------- */
+  .testi-mini-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px;}
+  .testi-mini{
+    background:#fff; border:1px solid var(--hairline); border-radius:10px;
+    padding:22px 22px;
+  }
+  .testi-mini .testi-head{margin-bottom:12px;}
+  .testi-mini .avatar{width:38px; height:38px; font-size:13px;}
+  .testi-mini .testi-name{font-size:14.5px;}
+  .testi-mini .testi-role{font-size:12px;}
+  .testi-mini p{font-size:14px; color:var(--ink);}
+  .testi-sub{margin-top:44px;}
+  .testi{display:grid; gap:22px; margin-top:32px;}
+  .testi-card{
+    background:#fff; border:1px solid var(--hairline); border-radius:10px;
+    padding:28px 30px;
+  }
+  .testi-head{display:flex; align-items:center; gap:14px; margin-bottom:16px;}
+  .avatar{
+    flex:none; width:46px; height:46px; border-radius:50%;
+    background:linear-gradient(135deg, var(--gold) 0%, var(--green) 130%);
+    color:#fff; font-family:var(--serif); font-weight:700; font-size:16px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .testi-name{font-weight:700; font-size:15.5px; color:var(--ink);}
+  .testi-role{font-size:13px; color:var(--ink-soft);}
+  .testi-card p{font-size:15px; color:var(--ink); }
+  .testi-card p + p{margin-top:12px;}
+
+  /* ---------- Rolling admission ---------- */
+  .admit-card{
+    background:var(--cream-2); border-radius:10px; padding:36px 38px;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between;
+  }
+  .admit-dates{display:flex; gap:14px;}
+  .admit-date{
+    background:var(--green); color:var(--cream); border-radius:8px;
+    padding:10px 16px; text-align:center; min-width:76px;
+  }
+  .admit-date .d{font-family:var(--serif); font-size:22px; font-weight:700; color:var(--gold-soft); line-height:1;}
+  .admit-date .m{font-size:11px; letter-spacing:.06em; text-transform:uppercase; margin-top:4px;}
+  .admit-text h3{font-family:var(--sans); font-size:16px; font-weight:700; color:var(--green); margin-bottom:6px;}
+  .admit-text p{font-size:14.5px; color:var(--ink-soft); max-width:420px;}
+
+  /* ---------- Form ---------- */
+  .form-card{
+    background:var(--green); border-radius:14px;
+    padding:44px 40px; color:var(--cream);
+  }
+  .form-card h2{color:var(--cream); font-size:clamp(24px,4vw,30px);}
+  .form-card > p{color:#D9E2CD; margin-top:12px; font-size:15.5px; max-width:480px;}
+  form{margin-top:30px; display:grid; gap:20px;}
+  label{font-size:13px; font-weight:600; letter-spacing:.03em; text-transform:uppercase; color:var(--gold-soft); display:block; margin-bottom:8px;}
+  input[type="text"], input[type="email"]{
+    width:100%; padding:14px 16px; border-radius:8px; border:1px solid #3F5A2E;
+    background:#173209; color:var(--cream); font-family:var(--sans); font-size:15px;
+  }
+  input::placeholder{color:#8FA07E;}
+  input:focus, .radio-row input:focus + span{outline:2px solid var(--gold-soft); outline-offset:2px;}
+  .radio-grid{display:grid; gap:10px;}
+  .radio-row{
+    display:flex; align-items:center; gap:10px; font-size:15px; font-weight:400;
+    text-transform:none; letter-spacing:0; color:#E7EEDE; cursor:pointer;
+    background:#173209; border:1px solid #3F5A2E; border-radius:8px; padding:12px 14px;
+  }
+  .radio-row input{accent-color:var(--gold); width:16px; height:16px; flex:none;}
+  .submit-btn{
+    background:var(--gold); color:var(--green-2); border:none; border-radius:100px;
+    font-family:var(--sans); font-weight:700; font-size:16px; padding:16px 30px;
+    cursor:pointer; justify-self:start; margin-top:6px;
+    transition:background .15s ease;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+  .fine{font-size:12.5px; color:#8FA07E; margin-top:4px;}
+
+  .kit-embed{
+    margin-top:30px;
+  }
+
+  .success{
+    display:none; text-align:center; padding:40px 20px;
+  }
+  .success.show{display:block;}
+  .success svg{width:44px; height:44px; color:var(--gold-soft); margin-bottom:16px;}
+  .success h3{color:var(--cream); font-family:var(--serif); font-size:22px;}
+  .success p{color:#D9E2CD; margin-top:10px; font-size:15px;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:48px 0; text-align:center;}
+  footer .brand{justify-content:center; display:inline-flex;}
+  footer p{font-size:13px; color:var(--ink-soft); margin-top:10px;}
+
+  @media (max-width:640px){
+    .call-grid{grid-template-columns:1fr;}
+    .testi-mini-grid{grid-template-columns:1fr;}
+    .band{padding:64px 0;}
+    .admit-card{flex-direction:column; align-items:flex-start;}
+    .form-card{padding:32px 22px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
+  }
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+</style>
 </head>
-
 <body>
 
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">Vivory <span>Mastermind</span></div>
-      <a class="topbar-cta" href="#warteliste">Platz sichern</a>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Vivory <span>Mastermind</span></div>
+    <a class="topbar-cta" href="#warteliste">Platz sichern</a>
+  </div>
+</div>
+
+<section class="dark hero">
+  <div class="wrap">
+    <span class="eyebrow">Warteliste · Vivory Mastermind</span>
+    <h1>Wöchentliche Inbound-Anfragen<br><em>statt Kaltakquise und Pitchen.</em></h1>
+    <p class="hero-sub">Ein System aus Content, Positionierung und Sales, das dir planbar Anfragen von Wunschkund:innen bringt - statt dass du jedem Post hinterherjagst.</p>
+    <div class="hero-badges">
+      <span class="badge">9 Module</span>
+      <span class="badge">5 Live-Call-Formate</span>
+      <span class="badge">3 Monate</span>
+      <span class="badge">Private Community auf Skool</span>
+    </div>
+    <a class="cta-btn" href="#warteliste">
+      Jetzt auf die Warteliste
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div class="hero-note"><span class="dot"></span> Nächste Runde startet 15.09.2026 - Plätze sind begrenzt</div>
+  </div>
+</section>
+
+<section class="band tight">
+  <div class="wrap reveal">
+    <div class="quote-card">
+      <p>Du postest - aber die Anfragen bleiben aus. Das Problem ist selten der Fleiß. Es fehlt das System dahinter.</p>
+      <p>In der <strong>Vivory Mastermind</strong> bauen wir genau das auf: wöchentliche Inbound-Anfragen von Wunschkund:innen, Content der kaufbereit macht - und ein System, das arbeitet, auch wenn du es nicht tust.</p>
     </div>
   </div>
+</section>
 
-  <section class="dark hero">
-    <div class="wrap">
-      <span class="eyebrow">Warteliste · Vivory Mastermind</span>
-      <h1>So baust du dir in 12 Wochen einen planbaren Kundengewinnungsprozess über LinkedIn auf -<br><em>ohne täglich
-          Kaltakquise zu machen.</em></h1>
-      <p class="hero-sub">Positionierung, Content und Sales greifen endlich ineinander, damit aus deiner Sichtbarkeit
-        regelmäßig konkrete Anfragen werden.</p>
-      <div class="hero-badges">
-        <span class="badge">9 Module</span>
-        <span class="badge">5 Live-Call-Formate</span>
-        <span class="badge">3 Monate</span>
-        <span class="badge">Private Community auf Skool</span>
+<section class="band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Stimmen aus der Mastermind</span>
+    <div class="head-block"><h2>Das sagen unsere Mitglieder</h2></div>
+
+    <div class="testi-mini-grid">
+      <div class="testi-mini">
+        <div class="testi-head">
+          <div class="avatar">KS</div>
+          <div><div class="testi-name">Katja Strohmaier</div><div class="testi-role">Conversion Copywriting für Coaches &amp; Expertinnen</div></div>
+        </div>
+        <p>Ich bin seit 2 Monaten in der Mastermind und habe regelmäßig 2 Gespräche/Woche, hatte bereits 2 Projekte, 1 Neukunde, mehr Profilbesuche und mein Selbstvertrauen ist auch gestiegen. Ich fühle mich mehr als Unternehmerin und es fühlt sich mehr nach meinem eigenen Business an.</p>
       </div>
-      <a class="cta-btn" href="#warteliste">
-        Jetzt auf die Warteliste
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      </a>
-      <div class="hero-note"><span class="dot"></span> Nächste Runde startet 15.09.2026 - Plätze sind begrenzt</div>
-    </div>
-  </section>
-
-  <section class="band tight">
-    <div class="wrap reveal">
-      <div class="quote-card">
-        <p>Das Problem ist selten der Fleiß. Es fehlt das System dahinter.</p>
-        <p>In der <strong>Vivory Mastermind</strong> bauen wir genau das auf: wöchentliche Inbound-Anfragen von
-          Wunschkund:innen, Content der kaufbereit macht - und ein System, das arbeitet, auch wenn du es nicht tust.</p>
+      <div class="testi-mini">
+        <div class="testi-head">
+          <div class="avatar">HH</div>
+          <div><div class="testi-name">Holger Hoffmann</div><div class="testi-role">EU-AI-Act Governance-Trainings · Founder OteraX</div></div>
+        </div>
+        <p>Von allen Angeboten, die mir unterbreitet wurden, definitiv das beste. Über die Teilnahme am Kurs habe ich mehr Disziplin und erledige meine LI-Arbeit regelmäßig. Gesucht habe ich genau danach, gepaart mit Menschen, die ich fühle.</p>
+      </div>
+      <div class="testi-mini">
+        <div class="testi-head">
+          <div class="avatar">HJ</div>
+          <div><div class="testi-name">Harula Jung</div><div class="testi-role">Enterprise Analytics &amp; Marketing Technology · Founder @HAJUMA®</div></div>
+        </div>
+        <p>Ich war kurz davor, mit LinkedIn aufzugeben. Die Module haben mir geholfen, besonders bei Positionierung, Zielgruppe und Angebot mehr Klarheit zu gewinnen. Insgesamt habe ich auf jeden Fall eine höhere Reichweite, mehr Follower und mehr Klarheit bei meinem Content.</p>
       </div>
     </div>
-  </section>
 
-  <section class="band">
-    <div class="wrap reveal">
-      <span class="eyebrow">Stimmen aus der Mastermind</span>
-      <div class="head-block">
-        <h2>Das sagen unsere Mitglieder</h2>
+    <div class="testi testi-sub">
+
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar">MG</div>
+          <div><div class="testi-name">Monika Gut</div><div class="testi-role">Wertebasierte Führung &amp; Zusammenarbeit für Führungskräfte</div></div>
+        </div>
+        <p>Ich habe vier Wochen intensiv mit Viktoria an meiner LinkedIn-Präsenz gearbeitet. Viktoria hat mir Klarheit, Struktur und konkrete Tools an die Hand gegeben. Ihr Feedback kam jeweils rasch, präzise und wertschätzend.</p>
+        <p>Als wir gestartet sind, hatte ich auf LinkedIn bereits Wirkung, jedoch mit hohem Aufwand: Ich brauchte lange für meine Posts und kam mit dem Beantworten von Kommentaren und Nachrichten kaum nach.</p>
+        <p>Nach vier Wochen LinkedIn-Mentoring war ich effizienter und meine KPI's haben sich ganz unbewusst mitentwickelt (im Vergleich zum 14-Tage-Schnitt davor): 1,3× mehr Impressionen, 2,5× mehr Kommentare, 3× mehr Engagement, 2,5× mehr Profilbesuche - dies bei gleichbleibend 2–3 Posts pro Woche.</p>
+        <p>Besonders wertvoll für mich: Viktoria verbindet Strategie mit Intuition. Eine Mentorin an der Seite zu haben, die fordert, stärkt und gleichzeitig Raum lässt, ist unglaublich motivierend.</p>
       </div>
 
-      <div class="testi-mini-grid">
-        <div class="testi-mini">
-          <div class="testi-head">
-            <div class="avatar">KS</div>
-            <div>
-              <div class="testi-name">Katja Strohmaier</div>
-              <div class="testi-role">Conversion Copywriting für Coaches &amp; Expertinnen</div>
-            </div>
-          </div>
-          <p>Ich bin seit 2 Monaten in der Mastermind und habe regelmäßig 2 Gespräche/Woche, hatte bereits 3 Projekte
-            (ohne den 1 Neukunden), mehr Profilbesuche und mein Selbstvertrauen ist auch gestiegen. Ich fühle mich mehr
-            als Unternehmerin und es fühlt sich mehr nach meinem eigenen Business an.</p>
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar">HK</div>
+          <div><div class="testi-name">Helena Koch</div><div class="testi-role">Energiearbeit für Solopreneur:innen</div></div>
         </div>
-        <div class="testi-mini">
-          <div class="testi-head">
-            <div class="avatar">HH</div>
-            <div>
-              <div class="testi-name">Holger Hoffmann</div>
-              <div class="testi-role">EU-AI-Act Governance-Trainings · Founder OteraX</div>
-            </div>
-          </div>
-          <p>Von allen Angeboten, die mir unterbreitet wurden, definitiv das beste. Über die Teilnahme am Kurs habe ich
-            mehr Disziplin und erledige meine LI-Arbeit regelmäßig. Gesucht habe ich genau danach, gepaart mit Menschen,
-            die ich fühle.</p>
-        </div>
-        <div class="testi-mini">
-          <div class="testi-head">
-            <div class="avatar">HJ</div>
-            <div>
-              <div class="testi-name">Harula Jung</div>
-              <div class="testi-role">Enterprise Analytics &amp; Marketing Technology · Founder @HAJUMA®</div>
-            </div>
-          </div>
-          <p>Ich war kurz davor, mit LinkedIn aufzugeben. Die Module haben mir geholfen, besonders bei Positionierung,
-            Zielgruppe und Angebot mehr Klarheit zu gewinnen. Insgesamt habe ich auf jeden Fall eine höhere Reichweite,
-            mehr Follower und mehr Klarheit bei meinem Content.</p>
-        </div>
+        <p>Das Coaching mit Viktoria hat mir sehr viel Spaß gemacht. Mir war wichtig, eine Begleitung zu finden, bei der die Energie stimmt - und genau das habe ich erlebt. Ich fühle mich nun sicher im Umgang mit LinkedIn und weiß, worauf es beim Aufbau einer Personal Brand wirklich ankommt.</p>
+        <p>Viktoria hat nicht nur wertvolle Einblicke aus ihrer Arbeit als Copywriterin geteilt, sondern auch praxisnahe Tipps, hilfreiches Material und Anregungen, wie ich Tools wie Notion oder KI gezielt nutzen kann, um meine Arbeit zu vereinfachen und Energie für das Wesentliche zu bewahren.</p>
       </div>
 
-      <div class="testi testi-sub">
-
-        <div class="testi-card">
-          <div class="testi-head">
-            <div class="avatar">MG</div>
-            <div>
-              <div class="testi-name">Monika Gut</div>
-              <div class="testi-role">Wertebasierte Führung &amp; Zusammenarbeit für Führungskräfte</div>
-            </div>
-          </div>
-          <p>Ich habe vier Wochen intensiv mit Viktoria an meiner LinkedIn-Präsenz gearbeitet. Viktoria hat mir
-            Klarheit, Struktur und konkrete Tools an die Hand gegeben. Ihr Feedback kam jeweils rasch, präzise und
-            wertschätzend.</p>
-          <p>Als wir gestartet sind, hatte ich auf LinkedIn bereits Wirkung, jedoch mit hohem Aufwand: Ich brauchte
-            lange für meine Posts und kam mit dem Beantworten von Kommentaren und Nachrichten kaum nach.</p>
-          <p>Nach vier Wochen LinkedIn-Mentoring war ich effizienter und meine KPI's haben sich ganz unbewusst
-            mitentwickelt (im Vergleich zum 14-Tage-Schnitt davor): 1,3× mehr Impressionen, 2,5× mehr Kommentare, 3×
-            mehr Engagement, 2,5× mehr Profilbesuche - dies bei gleichbleibend 2–3 Posts pro Woche.</p>
-          <p>Besonders wertvoll für mich: Viktoria verbindet Strategie mit Intuition. Eine Mentorin an der Seite zu
-            haben, die fordert, stärkt und gleichzeitig Raum lässt, ist unglaublich motivierend.</p>
+      <div class="testi-card">
+        <div class="testi-head">
+          <div class="avatar">DB</div>
+          <div><div class="testi-name">Dennis Bremer</div><div class="testi-role">Private Krankenversicherung &amp; Gewerbeabsicherung für Gründer</div></div>
         </div>
+        <p>Vivi ist einer der ersten Menschen, die ich hier bei LinkedIn kennenlernen durfte. Durch zahlreiche Gespräche, Austausch und ihre Hilfe habe ich es geschafft, meine Followeranzahl zu verdreifachen, mehr Anfragen zu bekommen und im Schnitt 50–80 Kommentare unter meinen Beiträgen zu haben. Ich kann die Zusammenarbeit mit Vivi nur empfehlen. Ohne sie wäre ich heute nicht hier.</p>
+      </div>
 
-        <div class="testi-card">
-          <div class="testi-head">
-            <div class="avatar">HK</div>
-            <div>
-              <div class="testi-name">Helena Koch</div>
-              <div class="testi-role">Energiearbeit für Solopreneur:innen</div>
-            </div>
-          </div>
-          <p>Das Coaching mit Viktoria hat mir sehr viel Spaß gemacht. Mir war wichtig, eine Begleitung zu finden, bei
-            der die Energie stimmt - und genau das habe ich erlebt. Ich fühle mich nun sicher im Umgang mit LinkedIn und
-            weiß, worauf es beim Aufbau einer Personal Brand wirklich ankommt.</p>
-          <p>Viktoria hat nicht nur wertvolle Einblicke aus ihrer Arbeit als Copywriterin geteilt, sondern auch
-            praxisnahe Tipps, hilfreiches Material und Anregungen, wie ich Tools wie Notion oder KI gezielt nutzen kann,
-            um meine Arbeit zu vereinfachen und Energie für das Wesentliche zu bewahren.</p>
-        </div>
+    </div>
+  </div>
+</section>
 
-        <div class="testi-card">
-          <div class="testi-head">
-            <div class="avatar">DB</div>
-            <div>
-              <div class="testi-name">Dennis Bremer</div>
-              <div class="testi-role">Private Krankenversicherung &amp; Gewerbeabsicherung für Gründer</div>
-            </div>
-          </div>
-          <p>Vivi ist einer der ersten Menschen, die ich hier bei LinkedIn kennenlernen durfte. Durch zahlreiche
-            Gespräche, Austausch und ihre Hilfe habe ich es geschafft, meine Followeranzahl zu verdreifachen, mehr
-            Anfragen zu bekommen und im Schnitt 50–80 Kommentare unter meinen Beiträgen zu haben. Ich kann die
-            Zusammenarbeit mit Vivi nur empfehlen. Ohne sie wäre ich heute nicht hier.</p>
-        </div>
+<section class="dark band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Für wen</span>
+    <div class="head-block"><h2>Das ist die Mastermind für dich, wenn …</h2></div>
+    <ul class="qual-list">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Du selbstständig bist und LinkedIn endlich planbar für Kundenanfragen nutzen willst.</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Du bereits postest, aber die Ergebnisse noch nicht stimmen.</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Du eine klare Positionierung aufbauen willst, die dich unverwechselbar macht.</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Du kein Kaltakquise-Gefühl willst - sondern Inbound, der zu dir kommt.</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Du eine Gemeinschaft willst, die wirklich mitarbeitet statt nur zuzuschauen.</li>
+    </ul>
+  </div>
+</section>
 
+<section class="band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Dein Lernpfad</span>
+    <div class="head-block"><h2>Die 9 Module</h2></div>
+
+    <div class="module-row"><div class="module-num">1</div><div><h3>LinkedIn verstehen &amp; der Algorithmus 2026</h3><p>Wie LinkedIn wirklich funktioniert - und wie du den Algorithmus für dich nutzt.</p></div></div>
+    <div class="module-row"><div class="module-num">2</div><div><h3>Mindset, Werte &amp; Zielsetzung</h3><p>Wie du als Unternehmerin wahrgenommen wirst, Marktvergleich &amp; das Fundament, das alle weiteren Entscheidungen trägt.</p></div></div>
+    <div class="module-row"><div class="module-num">3</div><div><h3>Personal Branding &amp; Positionierung</h3><p>Deine Persönlichkeit wird zur Marke. Klar, unverwechselbar, magnetisch.</p></div></div>
+    <div class="module-row"><div class="module-num">4</div><div><h3>Dein Angebot scharf formulieren</h3><p>Mit der 3S-Formel ein Angebot entwickeln, das Menschen sofort verstehen - und das sie kaufen wollen.</p></div></div>
+    <div class="module-row"><div class="module-num">5</div><div><h3>Profil als Funnel</h3><p>Dein LinkedIn-Profil ist deine Landingpage - Banner, Headline, Infobereich, Fokusbereich.</p></div></div>
+    <div class="module-row"><div class="module-num">6</div><div><h3>Content-Strategie &amp; die 3 Säulen</h3><p>Expertise, Learnings, Vision &amp; Meinung - Posts, die Reichweite und Vertrauen aufbauen.</p></div></div>
+    <div class="module-row"><div class="module-num">7</div><div><h3>DM-Strategie &amp; Community-Aufbau</h3><p>Wie du Gespräche startest, die nicht nach Kaltakquise klingen - und trotzdem konvertieren.</p></div></div>
+    <div class="module-row"><div class="module-num">8</div><div><h3>Sales &amp; Closing</h3><p>Aus Gesprächen werden Kund:innen - ohne Druck, ohne Pitchen, mit echter Verbindung.</p></div></div>
+    <div class="module-row"><div class="module-num">9</div><div><h3>Personal Brand Bilder mit dem Smartphone <span class="tag-new">✦ Neu, auf Mitglieder-Wunsch</span></h3><p>Wie du hochwertige Personal-Brand-Fotos allein mit dem Smartphone produzierst - inklusive Special-Guest-Masterclass zur Bildbearbeitung.</p></div></div>
+  </div>
+</section>
+
+<section class="dark band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Live-Begleitung</span>
+    <div class="head-block"><h2>Die 5 Call-Formate</h2></div>
+    <div class="call-grid">
+      <div class="call-card"><h3>Mindset Call</h3><p>Glaubenssätze, Klarheit und das richtige Fundament für deinen LinkedIn-Erfolg.</p></div>
+      <div class="call-card"><h3>LinkedIn Strategie Call</h3><p>Algorithmus, Reichweite, Positionierung - wir schauen auf deine Strategie und justieren, was nicht funktioniert.</p></div>
+      <div class="call-card"><h3>Copy Feedback - Deine Postings</h3><p>Bring deinen Post mit. Wir schauen gemeinsam auf Hook, Struktur und CTA.</p></div>
+      <div class="call-card"><h3>Sales &amp; DM Outreach Call</h3><p>Wie du mit 3–5 Nachrichten ohne Pitch einen Kunden in den Call bekommst - und aus dem Call einen zahlenden Kunden machst.</p></div>
+      <div class="call-card" style="grid-column:1 / -1;"><h3>✦ Special Call mit Special Guest</h3><p>Auf Anfrage zu deinen Themen - Canva &amp; Personal-Brand-Bilder, KI oder was dich gerade beschäftigt. Wir laden spannende Gäste ein, wenn du spezielle Fragen hast.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Was du bekommst</span>
+    <div class="head-block"><h2>Alles inklusive</h2></div>
+    <div class="inc-grid">
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20"/></svg></div>
+        <div><h3>9 Workbooks - zum Speichern, damit dein Wissen nie verloren geht</h3><p>Jedes Modul mit Theorie, Beispielen und direkten Schreibaufgaben - alles ausfüllbar, sofort anwendbar.</p></div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor" stroke="none"/></svg></div>
+        <div><h3>Live Calls in 5 Formaten</h3><p>Regelmäßige Calls mit direktem Feedback, Strategie-Input und persönlicher Begleitung.</p></div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="14" height="12" rx="1.5"/><path d="M17 10l4-2.5v9L17 14"/></svg></div>
+        <div><h3>Alle Call-Aufzeichnungen</h3><p>Verpasst oder nochmal anschauen - alle Recordings stehen dauerhaft zur Verfügung.</p></div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9.5" r="2.3"/><path d="M15 20c.3-2.4 1.9-4.3 3.9-4.8"/></svg></div>
+        <div><h3>Private Community auf Skool</h3><p>Austausch, Feedback, gemeinsames Wachsen - mit Menschen, die dasselbe Ziel verfolgen.</p></div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="14" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="13" r="1.1" fill="currentColor" stroke="none"/><path d="M12 21a4 4 0 0 0 0-8h-1"/></svg></div>
+        <div><h3>Canva-Templates für Banner &amp; Fokusbereich</h3><p>Fertige Vorlagen in deinen Brand-Farben - einfach kopieren und anpassen.</p></div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="17" rx="1.5"/><path d="M9 3.5h6v2H9z" fill="currentColor" stroke="none"/><path d="M8.5 10.5h7M8.5 14h7M8.5 17.5h4"/></svg></div>
+        <div><h3>Vivory Lead Tracker (Notion CRM)</h3><p>Dein persönliches CRM für alle Leads - wer antwortet, wer im Gespräch ist, wer heute Follow-up braucht.</p></div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M11 20V4M18 20v-7"/></svg></div>
+        <div><h3>DM-Aktivitäts-Tracker (Google Sheets)</h3><p>Täglich tracken, wie viele DMs du sendest, wie viele Gespräche entstehen - schwarz auf weiß ob deine Schlagzahl stimmt.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="dark band">
-    <div class="wrap reveal">
-      <span class="eyebrow">Für wen</span>
-      <div class="head-block">
-        <h2>Das ist die Mastermind für dich, wenn …</h2>
+<section class="dark band tight">
+  <div class="wrap reveal">
+    <div class="admit-card" style="background:#173209;">
+      <div class="admit-dates">
+        <div class="admit-date"><div class="d">01.</div><div class="m">Jeden Monat</div></div>
+        <div class="admit-date"><div class="d">15.</div><div class="m">Jeden Monat</div></div>
       </div>
-      <ul class="qual-list">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg> Du selbstständig bist und LinkedIn endlich planbar für Kundenanfragen nutzen willst.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg> Du bereits postest, aber die Ergebnisse noch nicht stimmen.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg> Du eine klare Positionierung aufbauen willst, die dich unverwechselbar macht.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg> Du kein Kaltakquise-Gefühl willst - sondern Inbound, der zu dir kommt.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg> Du eine Gemeinschaft willst, die wirklich mitarbeitet statt nur zuzuschauen.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="band">
-    <div class="wrap reveal">
-      <span class="eyebrow">Dein Lernpfad</span>
-      <div class="head-block">
-        <h2>Die 9 Module</h2>
-      </div>
-
-      <div class="module-row">
-        <div class="module-num">1</div>
-        <div>
-          <h3>LinkedIn verstehen &amp; der Algorithmus 2026</h3>
-          <p>Wie LinkedIn wirklich funktioniert - und wie du den Algorithmus für dich nutzt.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">2</div>
-        <div>
-          <h3>Mindset, Werte &amp; Zielsetzung</h3>
-          <p>Wie du als Unternehmerin wahrgenommen wirst, Marktvergleich &amp; das Fundament, das alle weiteren
-            Entscheidungen trägt.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">3</div>
-        <div>
-          <h3>Personal Branding &amp; Positionierung</h3>
-          <p>Deine Persönlichkeit wird zur Marke. Klar, unverwechselbar, magnetisch.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">4</div>
-        <div>
-          <h3>Dein Angebot scharf formulieren</h3>
-          <p>Mit der 3S-Formel ein Angebot entwickeln, das Menschen sofort verstehen - und das sie kaufen wollen.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">5</div>
-        <div>
-          <h3>Profil als Funnel</h3>
-          <p>Dein LinkedIn-Profil ist deine Landingpage - Banner, Headline, Infobereich, Fokusbereich.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">6</div>
-        <div>
-          <h3>Content-Strategie &amp; die 3 Säulen</h3>
-          <p>Expertise, Learnings, Vision &amp; Meinung - Posts, die Reichweite und Vertrauen aufbauen.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">7</div>
-        <div>
-          <h3>DM-Strategie &amp; Community-Aufbau</h3>
-          <p>Wie du Gespräche startest, die nicht nach Kaltakquise klingen - und trotzdem konvertieren.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">8</div>
-        <div>
-          <h3>Sales &amp; Closing</h3>
-          <p>Aus Gesprächen werden Kund:innen - ohne Druck, ohne Pitchen, mit echter Verbindung.</p>
-        </div>
-      </div>
-      <div class="module-row">
-        <div class="module-num">9</div>
-        <div>
-          <h3>Personal Brand Bilder mit dem Smartphone <span class="tag-new">✦ Neu, auf Mitglieder-Wunsch</span></h3>
-          <p>Wie du hochwertige Personal-Brand-Fotos allein mit dem Smartphone produzierst - inklusive
-            Special-Guest-Masterclass zur Bildbearbeitung.</p>
-        </div>
+      <div class="admit-text">
+        <h3 style="color:var(--gold-soft);">Einlass ist fortlaufend möglich</h3>
+        <p style="color:#C9D6BE;">Neue Plätze öffnen jeweils zum 1. und 15. jedes Monats. Trag dich in die Warteliste ein, damit du zur nächsten Runde am 15.09.2026 als Erste:r informiert wirst.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="dark band">
-    <div class="wrap reveal">
-      <span class="eyebrow">Live-Begleitung</span>
-      <div class="head-block">
-        <h2>Die 5 Call-Formate</h2>
-      </div>
-      <div class="call-grid">
-        <div class="call-card">
-          <h3>Mindset Call</h3>
-          <p>Glaubenssätze, Klarheit und das richtige Fundament für deinen LinkedIn-Erfolg.</p>
-        </div>
-        <div class="call-card">
-          <h3>LinkedIn Strategie Call</h3>
-          <p>Algorithmus, Reichweite, Positionierung - wir schauen auf deine Strategie und justieren, was nicht
-            funktioniert.</p>
-        </div>
-        <div class="call-card">
-          <h3>Copy Feedback - Deine Postings</h3>
-          <p>Bring deinen Post mit. Wir schauen gemeinsam auf Hook, Struktur und CTA.</p>
-        </div>
-        <div class="call-card">
-          <h3>Sales &amp; DM Outreach Call</h3>
-          <p>Wie du mit 3–5 Nachrichten ohne Pitch einen Kunden in den Call bekommst - und aus dem Call einen zahlenden
-            Kunden machst.</p>
-        </div>
-        <div class="call-card" style="grid-column:1 / -1;">
-          <h3>✦ Special Call mit Special Guest</h3>
-          <p>Auf Anfrage zu deinen Themen - Canva &amp; Personal-Brand-Bilder, KI oder was dich gerade beschäftigt. Wir
-            laden spannende Gäste ein, wenn du spezielle Fragen hast.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="band" id="warteliste">
+  <div class="wrap reveal">
+    <div class="form-card">
+      <span class="eyebrow">Warteliste</span>
+      <h2>Sicher dir deinen Platz</h2>
+      <p>Trag dich ein - du bekommst als Erste:r Bescheid, sobald ein Platz zum 1. oder 15. frei wird, inklusive persönlichem Erstgespräch.</p>
 
-  <section class="band">
-    <div class="wrap reveal">
-      <span class="eyebrow">Was du bekommst</span>
-      <div class="head-block">
-        <h2>Alles inklusive</h2>
+      <div class="kit-embed">
+        <script async data-uid="2448e8ea2c" src="https://vivorystudios-llc.kit.com/2448e8ea2c/index.js"></script>
       </div>
-      <div class="inc-grid">
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" />
-              <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20" />
-            </svg></div>
-          <div>
-            <h3>9 Workbooks - zum Speichern, damit dein Wissen nie verloren geht</h3>
-            <p>Jedes Modul mit Theorie, Beispielen und direkten Schreibaufgaben - alles ausfüllbar, sofort anwendbar.
-            </p>
-          </div>
-        </div>
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor" stroke="none" />
-            </svg></div>
-          <div>
-            <h3>Live Calls in 5 Formaten</h3>
-            <p>Regelmäßige Calls mit direktem Feedback, Strategie-Input und persönlicher Begleitung.</p>
-          </div>
-        </div>
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="3" y="6" width="14" height="12" rx="1.5" />
-              <path d="M17 10l4-2.5v9L17 14" />
-            </svg></div>
-          <div>
-            <h3>Alle Call-Aufzeichnungen</h3>
-            <p>Verpasst oder nochmal anschauen - alle Recordings stehen dauerhaft zur Verfügung.</p>
-          </div>
-        </div>
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="9" cy="8" r="3" />
-              <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
-              <circle cx="17.5" cy="9.5" r="2.3" />
-              <path d="M15 20c.3-2.4 1.9-4.3 3.9-4.8" />
-            </svg></div>
-          <div>
-            <h3>Private Community auf Skool</h3>
-            <p>Austausch, Feedback, gemeinsames Wachsen - mit Menschen, die dasselbe Ziel verfolgen.</p>
-          </div>
-        </div>
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="9" />
-              <circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none" />
-              <circle cx="14" cy="8.5" r="1.1" fill="currentColor" stroke="none" />
-              <circle cx="15.5" cy="13" r="1.1" fill="currentColor" stroke="none" />
-              <path d="M12 21a4 4 0 0 0 0-8h-1" />
-            </svg></div>
-          <div>
-            <h3>Canva-Templates für Banner &amp; Fokusbereich</h3>
-            <p>Fertige Vorlagen in deinen Brand-Farben - einfach kopieren und anpassen.</p>
-          </div>
-        </div>
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="5" y="4" width="14" height="17" rx="1.5" />
-              <path d="M9 3.5h6v2H9z" fill="currentColor" stroke="none" />
-              <path d="M8.5 10.5h7M8.5 14h7M8.5 17.5h4" />
-            </svg></div>
-          <div>
-            <h3>Vivory Lead Tracker (Notion CRM)</h3>
-            <p>Dein persönliches CRM für alle Leads - wer antwortet, wer im Gespräch ist, wer heute Follow-up braucht.
-            </p>
-          </div>
-        </div>
-        <div class="inc-item">
-          <div class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4 20V10M11 20V4M18 20v-7" />
-            </svg></div>
-          <div>
-            <h3>DM-Aktivitäts-Tracker (Google Sheets)</h3>
-            <p>Täglich tracken, wie viele DMs du sendest, wie viele Gespräche entstehen - schwarz auf weiß ob deine
-              Schlagzahl stimmt.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dark band tight">
-    <div class="wrap reveal">
-      <div class="admit-card" style="background:#173209;">
-        <div class="admit-dates">
-          <div class="admit-date">
-            <div class="d">01.</div>
-            <div class="m">Jeden Monat</div>
-          </div>
-          <div class="admit-date">
-            <div class="d">15.</div>
-            <div class="m">Jeden Monat</div>
-          </div>
-        </div>
-        <div class="admit-text">
-          <h3 style="color:var(--gold-soft);">Einlass ist fortlaufend möglich</h3>
-          <p style="color:#C9D6BE;">Neue Plätze öffnen jeweils zum 1. und 15. jedes Monats. Trag dich in die Warteliste
-            ein, damit du zur nächsten Runde am 15.09.2026 als Erste:r informiert wirst.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="warteliste">
-    <div class="wrap reveal">
-      <div class="form-card">
-        <span class="eyebrow">Warteliste</span>
-        <h2>Sicher dir deinen Platz</h2>
-        <p>Trag dich ein - du bekommst als Erste:r Bescheid, sobald ein Platz zum 1. oder 15. frei wird, inklusive
-          persönlichem Erstgespräch.</p>
-
-        <div class="kit-embed">
-          <script async data-uid="2448e8ea2c" src="https://vivorystudios-llc.kit.com/2448e8ea2c/index.js"></script>
-        </div>
-        <!-- Hinweis: Das ist dein Kit-Formular-Embed - Kit rendert hier sein
+      <!-- Hinweis: Das ist dein Kit-Formular-Embed - Kit rendert hier sein
            eigenes Formular-Design (Felder, Button, Erfolgsmeldung kommen
            direkt aus deinem Kit-Formularbuilder, nicht aus dieser Datei).
            Die "Was ist dein Ziel auf LinkedIn?"-Frage aus der alten Forms-
@@ -1195,37 +506,36 @@
            auf der erlaubten CDN-Liste) - hier erscheint also nichts, das ist
            normal. Sobald die Seite auf deiner eigenen Domain läuft, lädt
            das Kit-Formular ganz normal. -->
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="wrap">
-      <div class="brand">Vivory <span>Mastermind</span></div>
-      <p>Vivory Studios · Warteliste für die nächste Runde</p>
-    </div>
-  </footer>
+<footer>
+  <div class="wrap">
+    <div class="brand">Vivory <span>Mastermind</span></div>
+    <p>Vivory Studios · Warteliste für die nächste Runde</p>
+  </div>
+</footer>
 
-  <!-- ANALYTICS-PLATZHALTER: Hier das <script>-Snippet von Cloudflare Web
+<!-- ANALYTICS-PLATZHALTER: Hier das <script>-Snippet von Cloudflare Web
      Analytics (oder GoatCounter) einfügen, sobald die Seite auf der
      eigenen Domain läuft. Auf der claude.ai-Vorschau greift die
      Content-Security-Policy und blockt fremde Analytics-Skripte -
      dort zeigt es also nichts an, das ist normal. -->
 
-  <script>
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      var els = document.querySelectorAll('.reveal');
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
-        });
-      }, { threshold: 0.12 });
-      els.forEach(function (el) { io.observe(el); });
-    } else {
-      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
-    }
-  </script>
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var els = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
 
 </body>
-
 </html>
